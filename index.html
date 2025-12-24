@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>12 Buttons Site</title>
+  <style>
+    /* Easy-to-change settings */
+    :root {
+      --dur: 550ms;
+      --home-bg: url("background.jpg"); /* <-- change image filename here */
+      --home-overlay: rgba(0, 0, 0, 0.55);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    /* Home + pages share the same background */
+    #home,
+    .page {
+      min-height: 100vh;
+      position: relative;   /* needed for background layers */
+      overflow: hidden;
+      color: white;
+    }
+
+    /* Home layout */
+    #home {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    /* Page layout */
+    .page {
+      display: none;
+      padding: 28px;
+      box-sizing: border-box;
+    }
+    .page.active { display: block; }
+
+    /* Background image layer (home + pages) */
+    #home::before,
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--home-bg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* Dark overlay for readability (home + pages) */
+    #home::after,
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--home-overlay);
+      z-index: 0;
+    }
+
+    /* Content container sits above background (home) */
+    .home-content {
+      position: relative;
+      z-index: 1;
+      width: min(900px, 100%);
+      text-align: center;
+    }
+
+    .home-title {
+      margin: 0 0 18px;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.15;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .nav-btn {
+      padding: 18px 14px;
+      font-size: 16px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.92);
+      cursor: pointer;
+      transition: transform 120ms ease;
+    }
+    .nav-btn:hover { transform: translateY(-2px); }
+    .nav-btn:active { transform: translateY(0); }
+
+    /* Ensure ALL page content sits above the background/overlay */
+    .page > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    /* The expanding overlay */
+    .wipe {
+      position: fixed;
+      left: 0; top: 0;
+      width: 1px; height: 1px;
+      transform-origin: 0 0;
+      background: #111;
+      z-index: 9999;
+      will-change: transform;
+      transition: transform var(--dur) ease;
+    }
+  </style>
+</head>
+
+<body>
+  <main id="home">
+    <div class="home-content">
+      <h1 class="home-title" id="homeTitle">
+        THERE'S NO NEED TO BELIEVE ANYTHING — JUST LOOK AND THINK!
+      </h1>
+
+      <div class="grid">
+        <button class="nav-btn" data-page="p1">Introduction</button>
+        <button class="nav-btn" data-page="p2">Mind Only</button>
+        <button class="nav-btn" data-page="p3">Thesis</button>
+        <button class="nav-btn" data-page="p4">Section 5</button>
+        <button class="nav-btn" data-page="p5">Glossary</button>
+        <button class="nav-btn" data-page="p6">FAQ</button>
+        <button class="nav-btn" data-page="p7">Images</button>
+        <button class="nav-btn" data-page="p8">Interesting Reading</button>
+        <button class="nav-btn" data-page="p9">Interesting Videos</button>
+        <button class="nav-btn" data-page="p10">Comments</button>
+        <button class="nav-btn" data-page="p11">About</button>
+        <button class="nav-btn" data-page="p12">Contact</button>
+      </div>
+    </div>
+  </main>
+
+
+
+
+  <!-- Pages -->
+
+
+  <section id="p1" class="page">
+    <h1>Introduction</h1>
+    <p>Here is an interesting new theory. Any comments? 
+Please leave comments at the link below! Thanks!</p>
+    <button class="back">Back to Home</button>
+  </section>
+
+
+
+
+  <section id="p2" class="page">
+    <h1>Mind Only</h1>
+    <p><article class="content paper">
+
+  <header>
+    <h1>The “Mind-Only” System as Bridge between Mind and Matter</h1>
+    <p class="subtitle">A Semi-Scientific and Philosophical Defense</p>
+  </header>
+
+  <section aria-labelledby="abstract">
+    <h2 id="abstract">Abstract</h2>
+    <p>
+      The Buddhist “mind-only” (cittamātra) system is frequently dismissed as incompatible with Madhyamaka
+      or as philosophically naïve. This paper argues that such dismissals are unwarranted. By examining the status
+      of subjectivity, objectivity, and experience itself, it is shown that “mind-only” functions not as an ultimate
+      metaphysical claim but as a superior conventional ontology. Properly understood, it is fully compatible with the
+      Two Truths doctrine, satisfies Chandrakīrti’s criteria for conventional validity, and serves as an effective
+      conceptual bridge between physical and mental phenomena, as well as between Buddhist philosophy and contemporary
+      scientific research.
+    </p>
+  </section>
+
+  <section>
+    <h2>1. Subjectivity, Objectivity, and the Problem of Qualia</h2>
+    <p>
+      The concept of qualia—irreducibly subjective experience—is difficult to reconcile with a Buddhist philosophical
+      framework. Higher schools of Buddhist tradition assert that objective reality is ultimately untenable, a conclusion
+      reached either through valid reasoning or via direct meditative insight.
+    </p>
+    <p>
+      However, once the notion of objective reality is relinquished, the concept of subjective reality becomes equally
+      problematic. In the absence of objectivity, the term “subjective” loses its referent. Subjectivity presupposes an
+      object against which it is defined. If neither objectivity nor subjectivity can be coherently maintained, what
+      remains is experience itself, irreducible to either category.
+    </p>
+    <p>
+      This residual “experience” cannot be meaningfully classified as either subjective or objective. It is simply given.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Experience Itself as an Axiom: The Justification for “Mind”</h2>
+    <p>
+      To label this irreducible experiential field as “mind” or “consciousness” is admittedly problematic. Such labeling
+      does not explain its origin, structure, or relation to anything outside itself. It merely assigns a name to what is
+      already present.
+    </p>
+    <p>
+      Yet this move is not philosophically irresponsible. On the contrary, it mirrors standard scientific practice. All
+      formal systems ultimately rest upon axioms—entities or principles that are not derivable from prior premises but are
+      nevertheless declared to be fundamental. The existence of experience cannot be denied; therefore, it is legitimate to
+      treat it as a foundational postulate. We will call it therefore “mind”.
+    </p>
+    <p>
+      In this context, naming this fullness of experience “mind” or “consciousness” is not a metaphysical assertion about
+      ultimate reality, but a conventional designation for the total field of all knowable phenomena—which constitutes,
+      upon reflection, apart from the lack of inherent existence, mind only.
+    </p>
+  </section>
+
+  <section>
+    <h2>3. The Meaning and Scope of “Mind-Only”</h2>
+    <p>
+      It is undeniable that all possible objects of knowledge arise within this experiential field; therefore the expression
+      “mind-only” is justified in a strictly conventional sense. It does not claim that mind is an ultimate substance, nor
+      does it deny emptiness. Rather, it proposes a coherent conventional ontology in which all phenomena—mental and physical
+      alike—are understood as manifestations within experience.
+    </p>
+    <p>
+      Importantly, this position does not contradict the Two Truths doctrine. “Mind-only” is explicitly situated within
+      conventional truth, not ultimate truth. The claim is not that mind is ultimately real, but that it provides a more
+      refined and internally consistent conventional framework than competing ontologies.
+    </p>
+  </section>
+
+  <section>
+    <h2>4. Compatibility with Chandrakīrti’s Criteria</h2>
+    <p>
+      Chandrakīrti (following Nāgārjuna) outlines three criteria for valid conventional truth:
+    </p>
+    <ol>
+      <li>It is well known in the conventional world</li>
+      <li>It is not refuted by conventional cognition</li>
+      <li>It is not refuted by ultimate cognition</li>
+    </ol>
+    <p>The mind-only system satisfies all three.</p>
+
+    <h3>4.1 Not Refuted by Ultimate Cognition</h3>
+    <p>
+      Ultimate cognition apprehends emptiness alone; it does not engage with conventional ontologies. Since mind-only is not
+      proposed as an ultimate truth, it cannot be refuted by ultimate cognition.
+    </p>
+
+    <h3>4.2 Not Refuted by Conventional Cognition</h3>
+    <p>
+      A valid conventional refutation of mind-only would require a standpoint outside of mind or cognition itself. Such a
+      standpoint is incoherent. Any attempt at refutation necessarily occurs within cognition and thus presupposes what it
+      seeks to deny. This mirrors insights formalized in Gödel’s well known incompleteness theorem: no sufficiently complex
+      system can fully establish or refute itself from within.
+    </p>
+
+    <h3>4.3 Well Known in the World</h3>
+    <p>
+      Mind-only perspectives are deeply embedded in Buddhist theory and practice. The formless realms (ārūpyadhātu),
+      formless absorptions, and yogic experiences described throughout both Hīnayāna and Mahāyāna sources all reflect
+      ontologies in which experience is not grounded in material externality.
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Mind-Only Across Buddhist Traditions</h2>
+    <p>
+      Even the Theravāda Abhidhamma contains numerous elements that gesture toward a mind-only type of ontology, though these
+      references are not explicitly stated and often overlooked in favor of practical meditation techniques.
+    </p>
+    <p>
+      Historically, prominent Buddhist thinkers—including Dharmakīrti, Serlingpa, and Candragomin, among others—endorsed
+      views closely aligned with mind-only. The claim that mind-only is marginal or unorthodox is therefore historically
+      inaccurate.
+    </p>
+  </section>
+
+  <section>
+    <h2>6. Relationship to Madhyamaka</h2>
+    <p>
+      It is often claimed that mind-only is incompatible with Madhyamaka. While this may hold for some unsophisticated
+      interpretations, it does not apply to the system when properly understood.
+    </p>
+    <p>
+      Mind-only can function as a superior preparatory and supportive conventional framework that leads naturally to
+      Madhyamaka insight. Even after insight into emptiness, mind-only may remain one’s highest conventional understanding,
+      fully integrated with ultimate truth.
+    </p>
+  </section>
+
+  <section>
+    <h2>7. Mind-Only as a Non-Dual Bridge</h2>
+    <p>
+      Properly understood, mind-only dissolves the rigid dualism between mental and physical phenomena. It treats nāma and rūpa
+      not as fundamentally distinct substances but as expressions of a shared experiential basis.
+    </p>
+    <p>
+      In this sense, mind-only is neither idealism nor materialism. It is a non-dual framework that unifies cognition and
+      appearance without reifying either.
+    </p>
+  </section>
+
+  <section>
+    <h2>8. Parallels with Contemporary Science</h2>
+    <p>
+      Modern physics—particularly quantum mechanics—has increasingly destabilized naïve notions of physical objectivity. When
+      supplemented by cognitive science and phenomenology, striking parallels emerge between contemporary scientific models and
+      mind-only perspectives.
+    </p>
+    <p>
+      For readers interested in these parallels, further exploration of alternative yet scientifically valid interpretations of
+      quantum mechanics is recommended.
+    </p>
+    <p><strong>Reference link:</strong> <em>(add link here)</em></p>
+  </section>
+
+  <section>
+    <h2>Conclusion</h2>
+    <p>
+      The mind-only system is unjustly underrated not because it claims too much, but because it is often misunderstood. When
+      framed as a conventional, non-dual, axiomatic ontology, it is philosophically coherent, doctrinally orthodox, and
+      pragmatically powerful. Far from opposing Madhyamaka, it serves as one of its most effective conceptual allies.
+    </p>
+  </section>
+
+</article></p>
+    <button class="back">Back to Home</button>
+  </section>
+
+
+
+  <!-- Repeat sections p3..p12 similarly -->
+
+
+
+
+  <section id="p3" class="page"><h1>Thesis</h1><p><article class="content paper">
+
+  <header>
+    <h1>Time Based Cosmology of a Depth-less Species</h1>
+    <p class="subtitle">Or a Species Whose Cognition Evolved Without Spatial Interpretations — rev 2</p>
+  </header>
+
+  <section aria-labelledby="abstract">
+    <h2 id="abstract">Abstract</h2>
+    <p>
+      This paper explores a speculative cognitive and cosmological framework in which an intelligent species evolves without
+      depth perception or spatial interpretive priors. Instead of constructing the world through geometric extension, such a
+      species organizes experience through temporal patterns, relational dynamics, and scale-sensitive differentiation.
+    </p>
+    <p>
+      We analyze the implications of such a cognitive architecture for scientific development, metaphysical assumptions, the
+      understanding of physical phenomena, and the emergence (or non-emergence) of concepts such as mass, distance, objects,
+      motion, and classical space.
+    </p>
+    <p>
+      We further compare this depth-less model with characteristics of pre-decohered quantum mechanics, arguing that the species’
+      cosmology would align closely with a time-based relational ontology similar to the universal wavefunction.
+    </p>
+    <p>
+      Critically, we argue that this alternative cognitive framework is not merely hypothetical but represents a viable
+      evolutionary path that humans possess all necessary conditions to develop, either culturally or through future cognitive
+      evolution. Furthermore, awareness of this alternative enables conscious toggling between spatial and depth-less modes of
+      perception.
+    </p>
+  </section>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>
+      Human cognition has evolved around depth perception, spatial navigation, and interaction with a three-dimensional
+      environment. This has profoundly shaped our scientific models: classical mechanics, geometry, cosmology, and even intuitive
+      notions of agency are fundamentally spatial.
+    </p>
+    <p>
+      But these commitments are not logically necessary. Visual perception itself is free to interpretation as “with depth
+      component” or without depth—both are equally valid and change nothing of the retinal image itself. The depth interpretation
+      is an overlay, not inherent to the sensory data.
+    </p>
+    <p>
+      It is possible to systematically analyze a species whose perceptual and cognitive apparatus never evolved this spatial
+      interpretation. Such a species would not interpret the world in terms of “near/far,” “objects occupying space,” or
+      “trajectories.” Instead, they would perceive temporal succession, pattern-variation, and relational coherences.
+    </p>
+    <p>
+      This paper describes how such a species might conceptualize the world and what kind of cosmology, physics, and scientific
+      knowledge might emerge from this radically different cognitive foundation. Significantly, we argue that humans possess all
+      necessary conditions to have evolved this way, or to evolve toward it culturally and cognitively in the future.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. The Depth-less Cognitive Architecture</h2>
+
+    <h3>2.1 Absence of Depth Priors</h3>
+    <p>
+      In humans, spatial depth is not merely a perceptual feature—it is a cognitive organizing principle applied to sensory data
+      that does not inherently encode depth. The two-dimensional retinal image contains patterns of variation: texture gradients,
+      relative sizes, occlusions, and parallax effects over time.
+    </p>
+    <p>
+      Humans interpret these patterns as indicating depth and distance. A depth-less species simply never develops this
+      interpretive overlay. They perceive the same rich, structured patterns but organize them as relational and temporal
+      characteristics rather than as spatial arrangements.
+    </p>
+
+    <h3>2.2 Temporal and Relational Primacy</h3>
+    <p>
+      Because there is no interpretation of depth, all organization of experience defaults to temporal and relational structure.
+      The world consists of coherently evolving pattern-clusters, transitions rather than trajectories, and cycles rather than
+      distances. Patterns are characterized by their temporal signatures, phase relationships, and correlations with other
+      patterns.
+    </p>
+
+    <h3>2.3 All Perception as Process</h3>
+    <p>
+      Critically, the depth-less interpretation is all-pervasive and includes the perceiving agent. There is no experience of
+      “solid objects” because everything is understood as process.
+    </p>
+    <p>
+      What humans interpret as solid, bounded entities are, in this framework, highly stable, slowly-varying pattern-clusters with
+      strong internal temporal coherence. The ideas of physical mass, spatial extension, or near and far sides of objects never
+      arise.
+    </p>
+
+    <h3>2.4 Sensory Coordination Without Space</h3>
+    <p>
+      All sensory modalities must be conceptually coordinated to comply with and support the depth-less framework, and this is
+      entirely possible because no human sense inherently encodes depth:
+    </p>
+    <ul>
+      <li>
+        <strong>Touch and haptics</strong> are experienced not as contact with solid surfaces at locations, but as temporal
+        patterns of pressure-variation, texture-rhythms, and resistance-dynamics. What we call shape becomes a characteristic
+        temporal signature when motor-patterns are applied.
+      </li>
+      <li>
+        <strong>Proprioception</strong> is not “body position in space” but current state in the context of possible motor-pattern
+        configurations. Movement is transition between motor-states, not displacement through space.
+      </li>
+      <li>
+        <strong>Sound</strong> is already largely temporal and relational in structure. Spatial localization of sound—in the absence
+        of such prior intuition—would simply not be extracted. Sound remains pure temporal pattern.
+      </li>
+      <li>
+        <strong>Smell and taste</strong> are experienced as pure quality-patterns evolving over time, with no association to sources
+        at locations.
+      </li>
+      <li>
+        <strong>Sensorimotor integration</strong> coordinates different pattern-types into a unified temporal model where
+        correlations across modalities provide predictive power, without requiring spatial mediation.
+      </li>
+    </ul>
+
+    <h3>2.5 Agency Without Geometry</h3>
+    <p>
+      Agency arises not from spatial orientation but from being a locus of directly modulated patterns. The agent is not a bounded
+      body moving through space but a stable attractor in the stream of temporal activity—a subset of patterns that respond to
+      intentions and have a distinctive self-caused character.
+    </p>
+    <p>
+      Action is experienced as: “I modulate my motor-patterns, and certain other pattern-clusters undergo correlated
+      transformations.”
+    </p>
+    <p>
+      To briefly illustrate this it must be considered that even in our present everyday experience, what one normally considers
+      “my own body”—mirrored or in its actuality—is merely a subset of patterns appearing within the visual field itself while no
+      information of ownership being inherently encoded anywhere. The strongly felt sense of ownership is no more than conceptual
+      overlay. However the mere conventional validity of such “ownership” is not disputed here. As such, it exists.
+    </p>
+  </section>
+
+  <section>
+    <h2>3. Scientific Development Without Space</h2>
+
+    <h3>3.1 Physics Without Solid Objects</h3>
+    <p>
+      Without spatial priors, the concept of solid “objects” does not arise. What humans call objects are, for this species,
+      recurrent pattern-aggregates with persistence through time and characteristic modes of variation. Since everything is
+      process, there are no “things” to track, only evolving dynamics.
+    </p>
+
+    <h3>3.2 No Notion of Distance or Mass</h3>
+    <p>
+      Since “near/far” does not exist, no quantity corresponding to distance emerges. Instead, they quantify rate of change, phase
+      relations, correlation strength, and temporal lag.
+    </p>
+    <p>
+      Similarly, mass as “quantity of matter in a bounded object” never arises. Conservation laws would concern pattern-complexity,
+      information content, or relational structure rather than material substance.
+    </p>
+
+    <h3>3.3 Gravity and Force as Temporal Correlation</h3>
+    <p>
+      Gravity becomes a systematic pattern of correlated transitions. What we call “falling” is, in their terms, a predictable
+      shift in the temporal dynamics of one pattern-cluster relative to another. Forces are not pushes or pulls through space but
+      descriptions of how pattern-transformations reliably correlate.
+    </p>
+
+    <h3>3.4 Progressive Scientific Development</h3>
+    <p>Their science would likely develop through:</p>
+    <ul>
+      <li><strong>Pattern recognition and taxonomy:</strong> cataloguing recurrent pattern-types and their temporal signatures.</li>
+      <li><strong>Dynamics and correlation laws:</strong> formulating rules about which transformations are compatible, discovering
+        conservation principles of relational structure.</li>
+      <li><strong>Multi-scale structure:</strong> discovering that increasing temporal resolution (zooming) reveals nested patterns
+        at finer scales, with high-frequency oscillatory signatures at small scales.</li>
+      <li>
+        Mathematics would emphasize differential equations, phase relationships, spectral analysis, and information theory, but not
+        geometry or spatial coordinates.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Relational Cosmology</h2>
+
+    <h3>4.1 Time-Based Universe</h3>
+    <p>
+      Their cosmology is not geometric but chronological and relational. Instead of galaxies, stars, and planets, they describe
+      long-period oscillatory structures, slow transformations, and resonant clusters. The universe is understood as a vast system
+      of temporally evolving correlations at multiple scales.
+    </p>
+
+    <h3>4.2 Zooming Instead of Traveling</h3>
+    <p>
+      Exploration involves increasing the resolution of patterns rather than changing location. When they point their equivalent
+      of a telescope at what we call a distant galaxy, they experience it as increasing the temporal and structural resolution of a
+      particular pattern-cluster in their perceptual field, revealing finer-grained substructure with its own dynamics.
+    </p>
+    <p>
+      Indeed, even human telescopes phenomenologically do not transport us anywhere—they reveal more detail in patterns already
+      present in our sensory field. The spatial narrative of “looking across vast distances” is interpretive.
+    </p>
+
+    <h3>4.3 No Geometric Questions (flat versus spherical Earth or otherwise)</h3>
+    <p>
+      Questions about the “shape” of the world, flat versus curved space, or spatial topology do not arise. Cosmological questions
+      concern the global structure of temporal correlations, scales of periodicity, and emergence of stable pattern-configurations.
+      For example, what we call a “sphere” would be perceived as a coherent recognisable circular pattern exhibiting periodic
+      complexity.
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Parallels with Quantum Mechanics</h2>
+
+    <h3>5.1 Pre-Decohered World as Depth-less Universe</h3>
+    <p>
+      From our perspective, the depth-less species’ worldview resembles the quantum wavefunction before decoherence: no geometric
+      interpretation, no definite objects, no spatial localization, only evolving correlations and superposed amplitudes.
+    </p>
+    <p>
+      For them, this would simply be called “the World” or “Reality” without reference to quantum mechanics, which is our
+      framework for understanding the mismatch between fundamental physics and our spatial intuitions.
+    </p>
+
+    <h3>5.2 Wavefunction as Pattern Multiverse</h3>
+    <p>
+      The wavefunction is not a spatial wave but a high-dimensional structure encoding correlations at every scale. This mirrors
+      their cosmology, where structure is relational rather than geometric, and complexity exists at all levels of temporal
+      resolution.
+    </p>
+
+    <h3>5.3 Measurement as Temporal Clarification</h3>
+    <p>
+      Without spatial ontology, what we call wavefunction collapse is not localization in space but a transition from ambiguous
+      relational patterns to clearer, more stable ones—a shift in temporal dynamics rather than spatial determination.
+    </p>
+
+    <p class="note">
+      <strong>Note:</strong> An expanded version of section 5 (“Parallels with Quantum Mechanics”) with further explanations on how
+      it is relevant to a variant (temporal ontology, Z = t + i t) intuitive interpretation of solving the Schrödinger wave
+      equation of quantum mechanics can be found at the following link:
+      <em>(add link here)</em>
+    </p>
+  </section>
+
+  <section>
+    <h2>6. Emergence of Selfhood Without Space</h2>
+
+    <h3>6.1 The Agent as Temporal Coherence</h3>
+    <p>
+      Without confining spatial boundaries their concept of selfhood would necessarily differ from ours. “I” would not be
+      perceived as a bounded entity located “here,” but as a coherent attractor in pattern-dynamics—what represents “me” is
+      continuity and self-similarity of certain patterns over time.
+    </p>
+    <p>
+      The boundary between self and other becomes merely functional, not spatial: “patterns I can directly modulate” versus
+      “patterns I can only observe or indirectly influence”.
+    </p>
+
+    <h3>6.2 Weaker Self-Other Distinction</h3>
+    <p>
+      Other agents are viewed as not spatially separated beings but parallel temporal processes. The distinction resembles
+      different voices in a choir rather than separate objects in space. Communication and interaction are naturally experienced as
+      resonance or phase-coupling rather than signal transmission across distance.
+    </p>
+
+    <h3>6.3 No Interior-Exterior Divide</h3>
+    <p>
+      Without spatial containment, there is no obvious basis for private versus public experience. Thoughts might not feel “hidden
+      inside” but rather like subtle pattern-modulations that others have less direct access to. Privacy becomes resolution-limited
+      observation rather than spatial inaccessibility.
+    </p>
+
+    <h3>6.4 Death as Decoherence</h3>
+    <p>
+      Death changes from “my body ceasing to exist in space” to “my characteristic pattern-signature decoheres, loses stability,
+      dissolves back into the general dynamics”—a melody ending rather than an object being destroyed.
+    </p>
+
+    <h3>6.5 Social Organization Without Property</h3>
+    <p>
+      Even in human experience, property ownership is entirely conceptual and social—fences do not contain ownership, deeds do not
+      encode natural properties of land.
+    </p>
+    <p>
+      The depth-less species would see this clearly, as there is no temptation to reify property as spatial fact. They would
+      recognize all such distinctions as coordination agreements about pattern-access rights and negotiated boundaries in the space
+      of permitted actions.
+    </p>
+    <p>
+      They might not develop property concepts at all, or might develop very different ones based on temporal access rights or
+      contribution to pattern-maintenance.
+    </p>
+  </section>
+
+  <section>
+    <h2>7. Why Humans Did Not Evolve This Way—Yet We Could Have</h2>
+    <p>
+      Spatial cognition as default possibly offered evolutionary advantages for early humans: navigation, tool manipulation,
+      hunting, and survival in a terrestrial environment. However, this does not mean spatial interpretation was inevitable or
+      optimal in all contexts.
+    </p>
+
+    <p>Humans possess all necessary conditions to have evolved depth-less cognition:</p>
+    <ul>
+      <li>
+        The raw sensory data does not determine spatial interpretation—retinal images are two-dimensional, haptic sensations are
+        temporal, proprioception is state-based.
+      </li>
+      <li>
+        Depth perception is learned and fragile—individuals who gain sight after congenital blindness struggle with depth; optical
+        illusions reveal depth is inferred.
+      </li>
+      <li>
+        Meditative and contemplative traditions have long recognized that objects are processes and that spatial interpretation is
+        constructed.
+      </li>
+      <li>
+        Modern physics is already revealing the depth-less structure of fundamental reality through quantum mechanics and field
+        theory.
+      </li>
+    </ul>
+
+    <p>
+      This is not merely hypothetical. The alternative mode exists, and once one becomes aware and convinced of its validity, one
+      is able to switch between spatial and depth-less modes of perception at will, using whichever is more helpful at the moment.
+    </p>
+    <p>
+      This requires deep contemplation to understand that spatial interpretation is added rather than inherent, followed by
+      conviction that the depth-less framework is genuinely valid, and then familiarization through practice in perceiving without
+      spatial overlay.
+    </p>
+  </section>
+
+  <section>
+    <h2>8. Future Evolution and Cultural Emergence</h2>
+    <p>
+      Since the door to depth-less cognition is open—or can be opened—the same realization might occur on a large scale, naturally.
+    </p>
+    <p>This could happen through:</p>
+    <ul>
+      <li>Recognition spreading that spatial interpretation is optional.</li>
+      <li>Practices developing that cultivate depth-less perception.</li>
+      <li>Cultural frameworks emerging that normalize and systematize this view.</li>
+      <li>Developmental pathways shifting in learning environments emphasizing temporal and relational organization.</li>
+    </ul>
+
+    <p>Conditions favoring this shift include:</p>
+    <ul>
+      <li>Digital environments where spatial metaphors are arbitrary</li>
+      <li>Technological mediation decoupling perception from embodiment</li>
+      <li>Scientific understanding undermining naive spatial realism</li>
+      <li>Cultural or ecological pressures favoring less object-based, boundary-based, or territory-based thinking</li>
+    </ul>
+
+    <p>
+      This idea has not emerged from a single source but has naturally formed from a large field of contributing conditions,
+      including quantum mechanics, process philosophy, neuroscience, contemplative traditions, and the emergence of AI language
+      models that provide new cognitive scaffolding for exploring and articulating complex frameworks outside conventional spatial
+      thinking.
+    </p>
+  </section>
+
+  <section>
+    <h2>9. Discussion</h2>
+    <p>
+      This cognitive architecture yields a coherent experiential world and viable scientific methodology. Its cosmology is
+      temporally structured, relational, and rich in complexity at all scales. The framework is not science fiction but a genuine
+      alternative that humans could adopt, either individually through perceptual training or collectively through cultural
+      evolution.
+    </p>
+    <p>
+      The depth-less species does not experience an impoverished or limited world—they experience the same richness and variety of
+      structure humans do, but organized through different principles. Their science would be internally consistent and predictive.
+      Their technology would manipulate patterns through temporal coordination rather than spatial force.
+    </p>
+    <p>
+      Most significantly, their worldview aligns naturally with the fundamental structure revealed by quantum mechanics,
+      suggesting that space may not be fundamental but rather an evolved interpretation overlaying a deeper relational reality.
+    </p>
+  </section>
+
+  <section>
+    <h2>10. Conclusion</h2>
+    <p>
+      A species with no spatial priors would form a time-based relational science. Their worldview parallels quantum mechanics
+      before classicality emerges through decoherence. This suggests that space may not be fundamental but an evolved interpretation
+      of underlying temporal and relational dynamics.
+    </p>
+    <p>
+      Humans possess all necessary conditions to perceive and organize experience in this way. The depth-less framework is not
+      hypothetical but available. With awareness, contemplation, and practice, individuals can toggle between spatial and depth-less
+      modes, gaining cognitive flexibility and access to alternative ways of understanding reality, selfhood, and the nature of
+      existence itself.
+    </p>
+    <p>
+      The question is not whether this alternative is possible, but whether and how humanity will come to recognize and cultivate
+      it.
+    </p>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>Appendices</h2>
+    <ul>
+      <li><strong>Glossary of Terms (link):</strong> <em>(add link here)</em></li>
+      <li><strong>FAQ for Sceptics (link):</strong> <em>(add link here)</em></li>
+    </ul>
+  </section>
+
+</article></p><button class="back">Back to Home</button></section>
+
+
+
+
+  <section id="p4" class="page"><h1>Section 5. extended</h1><p><article class="content paper">
+
+  <h1> Parallels with Quantum Mechanics (expanded section)</h1>
+
+  <p>
+    Although the reinterpretation of decoherence as temporal simplification may appear unconventional at first glance, there are
+    parallels in acknowledged contemporary quantum research: e.g. Relational Quantum Mechanics (Rovelli); Quantum Bayesianism
+    (QBism); Consistent Histories (Gell-Mann &amp; Hartle); process-philosophy approaches to QM.
+  </p>
+
+  <p>However, none of the mainstream theories do <em>all</em> of the following:</p>
+  <ul>
+    <li>Represent space as the imaginary part of time: <strong>Z = t + i t</strong></li>
+    <li>Treat spatial extension as a cognitive misinterpretation of temporal patterns</li>
+    <li>Reinterpret the Schrödinger equation as a description of complexified temporal flow</li>
+    <li>Recast decoherence specifically as temporal simplification of a process</li>
+    <li>Fully dissolve the time–space duality and place time as the sole fundamental dimension</li>
+  </ul>
+
+  <p>
+    Thus, our model can be seen as a feasible unification of many partial insights that physicists have not combined in this way.
+    The present framework extends these ideas by introducing a unified complex-temporal structure <strong>Z = t + i t</strong>, in
+    which space is interpreted as an imaginary component of time.
+  </p>
+
+  <p>
+    In this formulation, decoherence naturally appears as a simplification of temporal possibilities—a reduction in the number of
+    viable process-trajectories—rather than a collapse to a location in space.
+  </p>
+
+  <hr />
+
+  <section>
+    <h2>Clarifying the notation Z = t + i t</h2>
+
+    <ul>
+      <li><strong>In traditional physics:</strong> three space coordinates (x, y, z) plus time t</li>
+      <li><strong>In our model:</strong> real time t plus three imaginary-time axes i(t₁, t₂, t₃)</li>
+    </ul>
+
+    <h3>Notations used</h3>
+    <ul>
+      <li><strong>Z = t + i(t₁, t₂, t₃):</strong> shows three separate imaginary-time axes</li>
+      <li><strong>Z = t + i t:</strong> shorthand, where “i t” collectively represents all three axes</li>
+    </ul>
+
+    <p>
+      The imaginary unit <em>i</em> is purely a mathematical marker—there is nothing more “imaginary” about it than about
+      <em>t</em> itself. Both are temporal dimensions.
+    </p>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>Introduction to the expanded technical section</h2>
+
+    <h3>Explaining the move: Treating space as three imaginary time axes (“i t”)</h3>
+
+    <h4>1. The basic transformation</h4>
+    <p>
+      In our framework, instead of the standard 4-dimensional space–time split <strong>(t, x, y, z)</strong> we propose:
+    </p>
+    <p><strong>Z = t + i(t₁, t₂, t₃)</strong></p>
+
+    <p>
+      So the universe is expressed not as 1 time + 3 space dimensions, but as 4 time dimensions, where three of them are imaginary
+      (orthogonal to real time). We call these the <em>i-time axes</em>.
+    </p>
+
+    <p>
+      Each spatial dimension becomes an imaginary-temporal direction, just as Wick rotation turns time into imaginary space in
+      Euclidean QFT—except here the rotation is permanent, structural, conceptual, interpretive, not a calculational trick.
+      Unlike Wick rotation’s temporary imaginary time, here imaginary-time axes are fundamental.
+    </p>
+
+    <p>
+      What we call “objects” are resonant standing waves in this manifold—patterns that reinforce themselves through constructive
+      temporal interference. Stability emerges naturally, as non-resonant patterns dissipate. This is directly analogous to
+      quantization emerging from boundary conditions: only certain modes “fit” the global temporal structure, just as only certain
+      wavelengths resonate in a cavity.
+    </p>
+
+    <h4>2. The rationale for this move</h4>
+    <p>There are three deep reasons why this reinterpretation is not arbitrary.</p>
+
+    <h5>(a) It dissolves the traditional space–time duality</h5>
+    <p>In standard relativity:</p>
+    <ul>
+      <li>time is dynamical, asymmetric, ordered</li>
+      <li>space is static, symmetric, extension-like</li>
+    </ul>
+    <p>
+      But the universe does not require this metaphysical split—it is a human cognitive artifact built on depth-based perception.
+      If space is fundamentally a collection of time-like degrees of freedom, then:
+    </p>
+    <ul>
+      <li>all physical change is temporal</li>
+      <li>“space” is a pattern of temporal relations</li>
+      <li>extension is the projection of deeper time dynamics</li>
+      <li>geometric distance becomes a measure of phase separation in imaginary time</li>
+    </ul>
+
+    <h5>(b) It explains why the Schrödinger equation needs the imaginary unit i</h5>
+    <p>
+      In standard QM, <em>i</em> is often treated as “just a mathematical device” ensuring oscillatory, unitary evolution. In this
+      reinterpretation, <em>i</em> is not symbolic: it is geometric. It indicates evolution along imaginary-temporal axes.
+    </p>
+    <p>
+      Thus, the Schrödinger equation is literally describing: “rotation of the system into imaginary time sectors.”
+    </p>
+
+    <h5>(c) It aligns with our intuitive depth-less perception model</h5>
+    <p>
+      Space becomes a derived illusion produced by the classical approximation that suppresses imaginary-time components (via
+      decoherence). This is multi-disciplinary: it is rooted in biased cognition itself.
+    </p>
+
+    <h4>3. Why call these “i t” axes?</h4>
+    <p>Because:</p>
+    <ul>
+      <li>They are temporal (change, succession, phase)</li>
+      <li>They are the imaginary part of a complex value (orthogonal to classical time)</li>
+      <li>They are perpendicular to each other just like spatial axes</li>
+      <li>They generate the same metric structure as Euclidean space</li>
+    </ul>
+
+    <p>Apart from turning all of physics into a study of time dynamics, additional results include:</p>
+    <ul>
+      <li><strong>Classicality:</strong> classical objects = patterns stable only in real time</li>
+      <li><strong>Quantum behavior:</strong> quantum phases = motion along i-time axes; interference is natural and geometric</li>
+      <li><strong>Decoherence:</strong> damping of imaginary-time motion; collapse is not spatial localization</li>
+      <li><strong>Wave/particle duality:</strong> wave = full 4-time motion; particle = real-time projection</li>
+    </ul>
+
+    <p><strong>We don’t quantize the universe. The universe quantizes itself by only permitting stable attractors.</strong></p>
+
+    <p>
+      In this framework, we do not impose quantization; it emerges naturally from the dynamics. Only those temporal wave patterns
+      that form stable, closed phase cycles in the imaginary-time planes can produce a measurable attractor. Patterns that do not
+      “fit” coherently dissipate and never become observable outcomes.
+    </p>
+
+    <p>
+      The result is that only discrete, self-consistent modes—the temporal equivalents of standing waves—survive long enough to be
+      measured. These are exactly the states that appear in ordinary quantum mechanics as quantized energy levels, momenta, and
+      angular momenta. Quantization is therefore not an assumption of the model but a structural consequence of temporal
+      self-consistency.
+    </p>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>Space and time</h2>
+
+    <h3>Time in the i(time) framework</h3>
+    <p>
+      In the i(time) framework, time is not defined as the reading of a clock, nor as any periodic physical process such as atomic
+      oscillations or planetary motion. Such operational definitions presuppose spatial objects, masses, and dynamical systems,
+      which are emergent rather than fundamental in this model.
+    </p>
+    <p>
+      Time is instead taken as a primitive structural feature of reality: the ordering principle by which distinctions arise and
+      persist. It is not something that “flows” through objects; it is the field within which all coherent patterns unfold.
+    </p>
+    <p>
+      Formally, time is understood as the global parameter of phase evolution of the temporal manifold. Every structure that
+      appears as an “object,” “event,” or “interaction” is a stable or semi-stable pattern in this evolving phase field. To exist
+      is to exhibit a coherent trajectory of phase change with respect to this fundamental ordering parameter.
+    </p>
+    <p>
+      Real time corresponds to the monotonic, globally consistent direction of phase unfolding—the ordering that guarantees causal
+      structure. The imaginary-time dimensions are complementary directions within the same temporal manifold, representing
+      orthogonal modes of phase organization rather than spatial extension.
+    </p>
+    <p>
+      Thus, time is neither a measurement nor a quantity, but a condition of intelligibility: the minimal structure required for
+      patterns to be distinguishable, coherent, and ordered. Clocks do not define time; they merely implement repeatable phase
+      processes synchronized with the deeper temporal field.
+    </p>
+    <p><strong>Ultra-short definition:</strong> Time is the primitive ordering parameter of reality: the global phase-unfolding structure within which all coherent patterns arise, persist, and transform.</p>
+
+    <h3>Space in the i(time) framework</h3>
+    <p>
+      In the i(time) framework, space is not treated as a fundamental arena in which objects are located. What is ordinarily
+      called “space” is an emergent interpretive layer arising from the organization of temporal phase structure.
+    </p>
+    <p>
+      Space is defined here as the relational ordering of phase structures along imaginary-time directions. These imaginary-time
+      axes are not additional places or dimensions of extension, but orthogonal modes of temporal organization. Apparent spatial
+      separation is therefore a pattern of phase differentiation within the temporal manifold.
+    </p>
+    <p>
+      Distance is not a measure of how far apart objects are, but a measure of how decorrelated their phase structures have become
+      along the imaginary-time directions. Spatial localization is a special case of temporal organization in which phase
+      relationships become highly constrained and stable.
+    </p>
+    <p>
+      Geometry is not imposed from outside the system but emerges internally from the coherence conditions of the temporal field.
+      Euclidean and relativistic geometries are effective descriptions of how phase correlations scale, deform, and persist under
+      different coherence regimes.
+    </p>
+    <p>
+      Thus, space is not something in which things exist; it is something that appears when temporal relations stabilize into
+      persistent, quasi-local phase structures—best understood as frozen temporal difference, not extended substance.
+    </p>
+    <p><strong>Ultra-short definition:</strong> Space is the emergent pattern of separation created by phase differentiation along imaginary-time directions; not a fundamental container but a stabilized relational structure of time itself.</p>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>5.1 Reinterpreting Noether’s theorem</h2>
+    <p>
+      In conventional physics, Noether’s theorem links continuous symmetries to conserved quantities: time-translation symmetry
+      yields conservation of energy; spatial-translation symmetry yields conservation of momentum; rotational symmetry yields
+      conservation of angular momentum.
+    </p>
+    <p>
+      The i(time) framework changes this picture fundamentally. Because the ontology contains no locally stored mass, no localized
+      energy densities, and no intrinsic particles, the traditional conserved quantities cannot be primary.
+    </p>
+    <p>
+      All dynamical evolution is encoded globally in the 4D temporal manifold, and what appear as “objects” are locally stable
+      configurations of phase relations. Energy becomes the global rate of unfolding temporal phase. Momentum becomes a relational
+      phase gradient. Angular momentum becomes the persistence of a twist-like mode within the imaginary-time planes.
+    </p>
+    <p><strong>Accordingly, what is conserved in this model is not values, but symmetries.</strong></p>
+
+    <p>Noether’s theorem is reinterpreted as preservation of specific geometric–temporal invariances:</p>
+    <ul>
+      <li><strong>Time-translation symmetry</strong> → conservation of global temporal-phase coherence</li>
+      <li><strong>Spatial-translation symmetry</strong> → conservation of relative phase gradients between regions of the manifold</li>
+      <li><strong>Rotational symmetry</strong> → conservation of topological twist-patterns in the imaginary-time planes</li>
+    </ul>
+
+    <p>
+      The traditional conserved quantities are emergent parameters describing how a stable temporal pattern participates in these
+      preserved symmetries: bookkeeping labels for invariance, not physical substances transported from one place to another.
+    </p>
+
+    <p>
+      This shift is not unprecedented: general relativity already treats gravitational energy as non-localizable; gauge theory
+      treats charge as a global constraint; quantum theory treats momentum and angular momentum as generators of symmetry
+      operations rather than tangible stored quantities.
+    </p>
+
+    <p>
+      This reinterpretation does not change predictions or calculational procedures—the mathematics remains identical. What changes
+      is our understanding of what the mathematics describes.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.2 Pre-decohered world as depth-less universe</h2>
+    <p>
+      From our perspective, the depth-less species’ worldview resembles the quantum wavefunction before decoherence: no geometric
+      interpretation, no definite objects, no spatial localization—only evolving correlations and superposed amplitudes.
+    </p>
+    <p>
+      For them, this would simply be called “the World” or “Reality,” without reference to quantum mechanics, which is our
+      framework for understanding the mismatch between fundamental physics and our spatial intuitions.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.3 Wavefunction as pattern-multiverse</h2>
+    <p>
+      The wavefunction is not a spatial wave but a high-dimensional structure encoding correlations at every scale. This mirrors
+      their cosmology, where structure is relational rather than geometric, and complexity exists at all levels of temporal
+      resolution.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.4 Measurement as temporal clarification</h2>
+    <p>
+      Without spatial ontology, what we call wavefunction collapse is not localization in space but a transition from ambiguous
+      relational patterns to clearer, more stable ones—a shift in temporal dynamics rather than spatial determination.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.5 Treating space as imaginary time axes (“i t”)</h2>
+    <p>
+      Conventional space is reinterpreted as three additional temporal dimensions, each multiplied by the imaginary unit <em>i</em>.
+      Instead of coordinates <strong>(t, x, y, z)</strong>, the universe can be expressed as:
+      <strong>T = t + i(t₁, t₂, t₃)</strong> or more simply <strong>t + i(t)</strong>.
+    </p>
+    <p>
+      Three imaginary-time axes replace space as a fundamental category, making all change and structure inherently temporal.
+      Physical evolution is motion through a complexified temporal manifold, and space emerges as the projection of imaginary-time
+      components onto human perception.
+    </p>
+    <p>
+      Space is no longer a fundamental container. It is a cognitive and mathematical abstraction emerging from deeper temporal
+      dynamics. The i(time) formulation provides a unified explanation for quantum behavior, classical emergence, and the
+      oscillatory role of the imaginary unit in quantum evolution.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.6 The imaginary unit in the Schrödinger equation</h2>
+    <p>
+      The standard Schrödinger equation uses the imaginary unit <em>i</em> in a specific and unusual way. In ordinary physics,
+      its appearance is often treated as a mathematical device.
+    </p>
+    <p>
+      In our framework, where space–time duality is dissolved and space is substituted as the imaginary component of time, <em>i</em>
+      becomes a geometric marker of the non-real temporal directions.
+    </p>
+
+    <p><strong>Therefore:</strong></p>
+    <ul>
+      <li>The wavefunction is a field evolving in complex time, not in space.</li>
+      <li>Momentum is the rate of change along an imaginary temporal dimension.</li>
+      <li>Spatial extension is the projection of motion in the imaginary-time directions.</li>
+      <li>Energy is the generator of transformations that mix real and imaginary time.</li>
+    </ul>
+
+    <p>
+      The imaginary unit is a marker of evolution along the imaginary-time axes (what are presently called “space”). Thus, the
+      Schrödinger equation describes how the wavefunction rotates through imaginary time, not through geometric space.
+    </p>
+
+    <p>
+      Dissolving space–time duality does not break the Schrödinger equation; it explains it. The imaginary unit becomes a physical
+      operator identifying evolution along those non-classical temporal directions perceived as spatial degrees of freedom.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.7 Wave/particle duality</h2>
+    <ul>
+      <li><strong>Wave-like behavior</strong> = smooth progression through imaginary time</li>
+      <li><strong>Particle-like detection</strong> = projection back onto real time</li>
+      <li><strong>Decoherence</strong> = flattening of imaginary-time components into a stable real-time attractor</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5.8 Scale invariance and temporal unity of the universe</h2>
+    <p>
+      When space is reinterpreted as three imaginary-time axes, the distinction between large-scale and small-scale structures
+      becomes a matter of projection and resolution, rather than a fundamental difference.
+    </p>
+
+    <h3>5.8.1 Micro and macro as the same temporal process</h3>
+    <ul>
+      <li>
+        At microscopic scales, superposition, interference, and entanglement reflect fine-grained motion through the i-time axes.
+      </li>
+      <li>
+        At macroscopic scales, galaxies, cosmic structures, and classical objects reflect coarse-grained projections of the same
+        temporal dynamics.
+      </li>
+      <li>
+        The hierarchy of scales is emergent: underlying processes are scale-invariant; differences arise from observational
+        resolution.
+      </li>
+    </ul>
+
+    <h3>5.8.2 Unified quantum-classical description</h3>
+    <ul>
+      <li><strong>Quantum behavior</strong> = evolution across full complex-time trajectories</li>
+      <li><strong>Classical behavior</strong> = projection onto real time where i-time fluctuations are suppressed</li>
+      <li><strong>Decoherence</strong> stabilizes patterns at all scales by damping i-time fluctuations</li>
+    </ul>
+
+    <h3>5.8.3 Implications for cosmology and geometry</h3>
+    <ul>
+      <li>Large-scale geometry = correlations along i-time axes projected into real time</li>
+      <li>Small-scale quantum fluctuations = same structure at higher temporal resolution</li>
+      <li>Distance, curvature, expansion = derived from temporal correlations, not intrinsic spatial facts</li>
+      <li>Self-similarity across scales is natural</li>
+    </ul>
+
+    <h3>5.8.4 Conceptual consequences</h3>
+    <ul>
+      <li>Wave/particle, quantum/classical, and micro/macro “dualities” are contextual projections of one manifold</li>
+      <li>Classical objects are patterns stabilized along real time; quantum effects are excursions into i-time</li>
+      <li>The universe becomes fully process-based and relational</li>
+    </ul>
+
+    <p>
+      This view unifies micro and macro physics: the same temporal dynamics underpin both quantum phenomena and cosmic structure,
+      providing a coherent framework for understanding reality without invoking space as a fundamental substrate.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.9 The “cat”</h2>
+    <h3>Schrödinger’s cat as competing temporal modes in an i(time) universe</h3>
+    <p>
+      In the standard spatial interpretation, the paradox arises because “alive” and “dead” are treated as coexisting spatial
+      alternatives. In the i(time) framework, the paradox dissolves: “alive” and “dead” are temporal modes of a single evolving
+      pattern.
+    </p>
+    <p>
+      A living organism corresponds to a coherent, self-maintaining temporal resonance; death corresponds to a later, differently
+      organized resonance. Superposition is an earlier temporally ambiguous pattern that has not yet settled into a stable
+      attractor—multiple continuation routes remain open.
+    </p>
+    <p>
+      Decoherence becomes temporal clarification. As the system couples with its surroundings, one resonance basin stabilizes. The
+      “observer” is the remainder of the universal temporal field (everything “not the cat”), with boundaries declared only for
+      measurement convenience.
+    </p>
+    <p>
+      The paradox only arose because spatial intuitions were imposed on a fundamentally temporal phenomenon.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.10 Quantum probability in i(time)</h2>
+    <h3>The unfolding of temporal openness</h3>
+    <p>
+      In this model each quantum system exists as a temporally unresolved dynamic pattern, with multiple potential future modes
+      embedded within its resonance structure. The amplitude weights (conventionally |ψ|²) describe the relative likelihood that
+      the system will settle into one temporal attractor versus another.
+    </p>
+    <p>
+      These weights describe the structure of the process in the present moment. Probabilities are expressions of temporal
+      openness. Decoherence corresponds to interaction with what is traditionally called the “environment,” through which the
+      pattern stabilizes into one attractor as temporal clarification, not mysterious collapse.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.11 Quantum entanglement</h2>
+    <h3>Multi-dimensional temporal resonance</h3>
+    <p>
+      In standard spatial interpretations, entanglement appears paradoxical because one measurement seems to affect another across
+      distance. In the i(time) framework, entanglement is higher-dimensional temporal resonance: resonantly coupled patterns within
+      one temporal manifold.
+    </p>
+    <p>
+      What seems instantaneous in spatial projection is coordinated unfolding along shared i-time axes. No signal travels through
+      space, no causality is violated; correlation is a consequence of temporal coherence.
+    </p>
+    <p>
+      The “observer” is again the remainder of the universal temporal field outside the local pattern, with boundaries declared
+      only for measurement. Measurement reveals which attractor the system is stabilizing into.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.12 Feynman path integrals reinterpreted</h2>
+    <p>
+      In standard QM, the path integral sums over all possible “paths,” each contributing a phase factor. In the i(time) framework,
+      each “path” is a temporally extended phase configuration of the universal field: a temporally allowed mode, not something a
+      particle “samples.”
+    </p>
+
+    <p><strong>The path integral becomes:</strong></p>
+    <blockquote>
+      A global sum over all allowable temporal evolutions of the process, where destructive interference removes incoherent
+      temporal variations, and constructive interference identifies the stable temporal attractor.
+    </blockquote>
+
+    <p>
+      Classical trajectories arise as maximally self-coherent temporal modes. Superposition corresponds to multiple temporally
+      permitted modes; measurement stabilizes a mode. Wick rotation is no longer conceptually required, because imaginary-time
+      structure is already fundamental and interference is meaningful rather than pathological.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.13 Dark energy</h2>
+    <h3>Dark energy as a misinterpretation of temporal phase divergence</h3>
+    <p>
+      Conventional cosmology attributes accelerated expansion to “dark energy,” presupposing that space is a substrate that can
+      stretch. In the i(time) framework, this assumption is unnecessary: if spatial coordinates are imaginary-time directions, the
+      phenomenon corresponds to differential unfolding of temporal phases across the 4D temporal manifold.
+    </p>
+    <p>
+      The observational signature reflects phase divergence over cosmological timescales, not a force acting on an independent
+      space. The need for a dark-energy substance disappears, while the same observational phenomena can be described as temporal
+      phase evolution rather than spatial expansion.
+    </p>
+  </section>
+
+  <section>
+    <h2>5.14 Speed of light</h2>
+    <h3>The meaning of “c” in a universe made of time</h3>
+    <p>
+      In the i(time) framework, the constant <em>c</em> is not a speed. It is the fixed geometric ratio between two forms of
+      temporal unfolding:
+    </p>
+    <ul>
+      <li><strong>real time t</strong>, the axis of causal progression</li>
+      <li>
+        <strong>imaginary time (i t₁, i t₂, i t₃)</strong>, whose combined magnitude is equivalent to what we normally call “space”
+      </li>
+    </ul>
+    <p>
+      Because evolution involves both modes, the ratio between them is constrained by the manifold geometry. That ratio is <em>c</em>.
+      Its numerical value depends on units, but its invariance does not: nothing can “exceed” <em>c</em> because the temporal manifold
+      fixes the ratio between these two modes of becoming.
+    </p>
+    <p>
+      Thus, <em>c</em> is the universal scaling factor connecting real time to imaginary time—the most basic imprint of a universe
+      whose entire structure is temporal.
+    </p>
+  </section>
+
+  <hr />
+  <p><em>* End of Expanded Technical Section *</em></p>
+
+</article></p><button class="back">Back to Home</button></section>
+
+
+
+
+
+  <section id="p5" class="page"><h1>Glossary</h1><p><article class="content glossary">
+
+  <h1>Glossary</h1>
+
+  <p class="note">
+    <strong>Please note:</strong> Some of the definitions have been adapted to our currently discussed model in a way that keeps
+    their scientific validity while suitably complementing the standard definitions. The applied changes point toward the
+    dismantling of space–time duality and the process-oriented interpretation of quantum ontology.
+  </p>
+
+  <p class="note">
+    All divergences occur in the same direction:
+    <span class="arrow">→</span> from geometric / spatial ontology
+    <span class="arrow">→</span> toward temporal / relational / process ontology.
+  </p>
+
+  <dl class="terms">
+
+    <dt id="attractor">Attractor</dt>
+    <dd>
+      <p><strong>Classical definition:</strong> A state or set of states toward which a dynamical system tends to evolve.</p>
+      <p><strong>In our model:</strong> A stable or recurring pattern in the flow of processes.</p>
+      <p>
+        In a time-based ontology, an attractor is not a “place” but a mode of temporal behavior toward which a system naturally
+        evolves. Attractors correspond to stable identities, habits, or recurring structures in the world’s unfolding dynamics.
+        <em>See also:</em> <a href="#real-time-attractor">Real-Time Attractor</a>.
+      </p>
+    </dd>
+
+    <dt id="classicality">Classicality (in Quantum Mechanics)</dt>
+    <dd>
+      <p>
+        The emergence of classical behavior (definite states, no interference) due to decoherence. The appearance of a world made
+        of solid objects with definite properties.
+      </p>
+      <p>
+        Classicality is not fundamental; it emerges when underlying quantum processes settle into stable, low-ambiguity temporal
+        patterns that behave predictably. Classicality is what the world looks like after quantum correlations have simplified
+        through decoherence.
+        <em>See:</em> <a href="#quantum-decoherence">Quantum Decoherence</a>.
+      </p>
+    </dd>
+
+    <dt id="complex-temporal-manifold">Complex Temporal Manifold (our own term)</dt>
+    <dd>
+      <p>
+        The multidimensional structure formed by one real-time axis and multiple imaginary-time axes. It represents all possible
+        temporal directions along which processes evolve. Physical phenomena, including quantum behavior, are trajectories or flows
+        through this manifold rather than motion through space.
+        <em>See also:</em> <a href="#manifold">Manifold</a>.
+      </p>
+    </dd>
+
+    <dt id="decoherence">Decoherence</dt>
+    <dd>
+      <p><em>See:</em> <a href="#quantum-decoherence">Quantum Decoherence</a>.</p>
+    </dd>
+
+    <dt id="environment">Environment</dt>
+    <dd>
+      <p>
+        The larger system that a smaller “system” of interest is interacting with. It is the external world or surroundings that
+        can cause quantum systems to lose their coherence, a process called decoherence.
+      </p>
+      <p>
+        Our definition of environment is the same as in standard QM but viewed in the context of our definitions of the i(time)
+        manifold and universal wavefunction.
+        <em>See:</em> <a href="#manifold">Manifold</a>;
+        <em>See:</em> <a href="#universal-wavefunction">Universal Wavefunction</a>.
+      </p>
+    </dd>
+
+    <dt id="imaginary-projection">Imaginary Projection (our own term)</dt>
+    <dd>
+      <p>
+        The apparent spatial component of a process when its motion along i-time axes is interpreted as geometry. What humans
+        perceive as distance or spatial separation is the projection of underlying imaginary-time evolution onto a real-time
+        framework.
+      </p>
+    </dd>
+
+    <dt id="i-time-axes">i-Time Axes (our own term)</dt>
+    <dd>
+      <p>
+        The three temporal dimensions corresponding to conventional spatial directions, each multiplied by the imaginary unit
+        <em>i</em>. Physical processes evolve along both real-time and i-time axes, and what humans perceive as space is the
+        projection of motion along these imaginary temporal dimensions.
+      </p>
+      <p>
+        Wave-like quantum behavior corresponds to motion through i-time, while classical objects emerge from patterns stabilized
+        along the real-time axis.
+      </p>
+    </dd>
+
+    <dt id="manifold">Manifold (in this framework)</dt>
+    <dd>
+      <p>
+        A continuous, multidimensional structure representing all possible temporal directions of the universe. In conventional
+        physics, a manifold often refers to spacetime; here, it refers to a complex temporal manifold consisting of one real-time
+        axis and three i-time axes.
+      </p>
+      <p>
+        Each point in the manifold corresponds to a configuration of the system along these temporal dimensions, and evolution is
+        understood as temporal motion through the manifold rather than through physical space.
+        <em>See also:</em> <a href="#complex-temporal-manifold">Complex Temporal Manifold</a>.
+      </p>
+    </dd>
+
+    <dt id="multi-time-trajectory">Multi-Time Trajectory (our own term)</dt>
+    <dd>
+      <p>
+        The path of a system as it evolves simultaneously along the real-time and i-time axes. Quantum superpositions and
+        interference effects reflect the structure of these trajectories, while classical outcomes correspond to projections of
+        multi-time trajectories onto the real-time axis.
+      </p>
+    </dd>
+
+    <dt id="quantum-decoherence">Quantum Decoherence</dt>
+    <dd>
+      <p>
+        Loss of quantum coherence via environmental entanglement; converts quantum probabilities into classical probabilities. In
+        other words: the process by which quantum processes lose their fragile, phase-dependent correlations due to interaction
+        with their environment.
+      </p>
+      <p>
+        <strong>In our depth-less framework:</strong> decoherence is the transition from flexible, ambiguous temporal relations to
+        more definite, stable temporal structures. It is not a spatial phenomenon but a reduction of the wavefunction’s possible
+        temporal trajectories.
+        <em>See also:</em> <a href="#temporal-clarification">Temporal Clarification</a>.
+      </p>
+    </dd>
+
+    <dt id="real-time-attractor">Real-Time Attractor (our own term)</dt>
+    <dd>
+      <p>
+        A stable pattern or mode in the real-time axis toward which temporal processes naturally evolve. In this framework,
+        classical objects and particle-like behavior correspond to real-time attractors, which emerge when fluctuations along
+        imaginary-time axes are suppressed by decoherence or stabilization.
+      </p>
+    </dd>
+
+    <dt id="temporal-clarification">Temporal Clarification (our own term)</dt>
+    <dd>
+      <p>
+        The process by which ambiguous or superposed temporal patterns simplify into stable, low-ambiguity trajectories. This
+        concept generalizes wavefunction collapse: measurement is not spatial localization but selection of a coherent temporal
+        evolution within the complex temporal manifold.
+        <em>See:</em> <a href="#quantum-decoherence">Quantum Decoherence</a>.
+      </p>
+    </dd>
+
+    <dt id="time-based-relational-model">Time-Based Relational Model (Z = t + i t)</dt>
+    <dd>
+      <p class="meta"><em>(this term is original and definition is our own)</em></p>
+      <p>
+        A science-based framework that describes reality not in terms of objects moving through space but as patterns,
+        correlations, and processes evolving in time. Relationships and temporal signatures replace geometric extension. Space
+        becomes an interpretive convenience rather than a fundamental category.
+      </p>
+      <p>
+        No exact equivalent in standard QM. Closest is: relational interpretations of spacetime / quantum mechanics (Rovelli,
+        Barbour, etc.).
+      </p>
+      <p>
+        To fully appreciate the i(time) model it is essential that one reads and deeply contemplates our main text preceding
+        section 5.
+      </p>
+    </dd>
+
+    <dt id="universal-wavefunction">Universal Wavefunction</dt>
+    <dd>
+      <p>
+        <strong>Classic definition:</strong> The wavefunction of the entire universe (Everett / Many Worlds), defined over
+        configuration space.
+      </p>
+      <p>
+        <strong>Time-based model:</strong> The complete description of all possible temporal processes and their correlations in
+        the entire universe. It encodes every coherent pattern and every potential evolution. In this worldview, the universal
+        wavefunction is not a spatial distribution but a multiscale relational field of evolving temporal structure.
+      </p>
+    </dd>
+
+    <dt id="wavefunction">Wavefunction (or wave-function, wave function)</dt>
+    <dd>
+      <p>
+        Wavefunction, in quantum mechanics, is the variable quantity that mathematically describes the wave characteristics of a
+        particle. The value of the wavefunction of a particle at a given point of space and time is related to the likelihood of
+        the particle's being there at the time.
+      </p>
+    </dd>
+
+    <dt id="wavefunction-collapse">Wavefunction Collapse</dt>
+    <dd>
+      <p>
+        <strong>Classic definition:</strong> Reduction of the wavefunction from superposition to a single eigenstate upon
+        measurement.
+      </p>
+      <p>
+        <strong>In our context:</strong> A shift from many possible temporal evolutions to one stable evolution when a system is
+        measured or interacts with its environment.
+        <em>See:</em> <a href="#environment">Environment</a>.
+      </p>
+      <p>
+        Collapse (in the time-based model) is not about a particle “appearing at a location” but about the clarification of a
+        process, where ambiguous correlations are replaced by a definite temporal pattern (an attractor).
+        <em>See:</em> <a href="#attractor">Attractor</a>.
+      </p>
+    </dd>
+
+  </dl>
+
+</article></p><button class="back">Back to Home</button></section>
+
+
+
+
+  <section id="p6" class="page"><h1>FAQ</h1><p><article class="content faq">
+
+  <h1>Appendix — FAQ for Skeptics of the i(Time) Framework</h1>
+
+  <section>
+    <h2>Q1 — “Isn’t this just re-labeling space as imaginary time?”</h2>
+    <p><strong>Only superficially.</strong></p>
+    <p>
+      The model replaces the ontological distinction between space and time with a single underlying entity
+      (<em>temporal phase</em>), from which spatial relations arise as imaginary-time phase displacements.
+    </p>
+    <p>
+      This eliminates the need to separately postulate metric signatures, spatial locality, and the origin of <em>c</em>.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q2 — “Isn’t this incompatible with quantum field theory?”</h2>
+    <p><strong>No.</strong></p>
+    <p>
+      QFT already treats fields as oscillatory processes in spacetime.
+      Replacing spacetime with a temporal manifold changes interpretation, not the local algebra.
+    </p>
+    <p>
+      Creation and annihilation operators still arise from harmonic modes of the field,
+      because the field equations retain their form under the substitution.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q3 — “Isn't the i(time) model just another ‘classical’ interpretation?”</h2>
+    <p><strong>No.</strong></p>
+    <p>
+      Although the i(time) framework replaces abstract Hilbert space with a geometric temporal manifold:
+    </p>
+    <ul>
+      <li>The evolution is unitary along real time</li>
+      <li>Phase relationships between points in the manifold lead to interference</li>
+      <li>Measurement corresponds to convergence into an attractor</li>
+    </ul>
+    <p>That means:</p>
+    <ul>
+      <li>Probabilities are still calculated as |amplitude|², as in standard QM</li>
+      <li>Superposition and interference emerge as resonances of temporal patterns</li>
+      <li>Classical probability alone would never produce interference patterns</li>
+    </ul>
+    <p>
+      By giving the wavefunction a geometric substrate in the i(time) manifold,
+      the framework naturally accommodates curvature and relational structure,
+      providing a conceptual bridge to general relativity while preserving all quantum phenomena.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q4 — “Does this theory help us compute anything new?”</h2>
+    <p><strong>Yes — most significantly, the origin of <em>c</em>.</strong></p>
+    <p>
+      The speed of light arises as a fixed geometric ratio between two forms of temporal unfolding:
+    </p>
+    <ul>
+      <li><strong>Real time</strong> <em>t</em> — the axis of causal progression</li>
+      <li>
+        <strong>Imaginary time</strong> <em>i(t₁, t₂, t₃)</em> — whose combined magnitude is traditionally called “space”
+      </li>
+    </ul>
+    <p>
+      <strong>c</strong> is the universal scaling factor connecting real time to imaginary time.
+      This explanation is impossible in standard relativity but natural here.
+    </p>
+    <p><em>See also: Q9</em></p>
+  </section>
+
+  <section>
+    <h2>Q5 — “If everything is wave-like, why don’t we see waves in macroscopic objects?”</h2>
+    <p>
+      Because macroscopic objects contain ~10²⁶ degrees of freedom.
+      Their collective wavefunction decoheres almost instantly, producing stable classical behavior.
+    </p>
+    <p>
+      This is exactly what happens in standard quantum mechanics.
+      The i(time) framework doesn’t remove wave behavior — it explains why classicality emerges so reliably.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q6 — “Why can’t you compute a baseball’s trajectory directly from the wave equations?”</h2>
+    <p>
+      For the same reason one cannot do so in quantum field theory:
+      the full wavefunction lives in an astronomically large configuration space.
+    </p>
+    <p>
+      This is a computational barrier, not a conceptual flaw.
+      Macroscopic physics is the coarse-grained limit of the deeper theory — exactly as observed.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q7 — “Are conservation laws preserved?”</h2>
+    <p><strong>Yes.</strong></p>
+    <ul>
+      <li><strong>Energy</strong> → frequency of real-time oscillation</li>
+      <li><strong>Momentum</strong> → rate of phase change along imaginary-time axes</li>
+      <li><strong>Angular momentum</strong> → conserved rotational symmetry in imaginary-time planes</li>
+    </ul>
+    <p>
+      These arise automatically from Noether’s theorem applied to the temporal manifold’s symmetries.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q8 — “How does the model preserve relativity?”</h2>
+    <p>
+      Lorentz symmetry becomes a statement about rotations between real and imaginary temporal phases.
+    </p>
+    <p>
+      The Lorentz transformation emerges cleanly,
+      with <em>c</em> as the maximum rate at which real-time evolution can coherently transfer to imaginary-time evolution.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q9 — “What sets the numerical value of <em>c</em>?”</h2>
+    <p>
+      <em>c</em> is a geometric conversion ratio inherent to the temporal manifold itself.
+    </p>
+    <p>
+      A full prediction requires linking laboratory time standards
+      (atomic frequencies) to intrinsic manifold curvature.
+      The framework makes this possible in principle.
+    </p>
+    <p><em>See also: Q4</em></p>
+  </section>
+
+  <section>
+    <h2>Q10 — “Why is the universe expanding?”</h2>
+    <p>
+      Expansion corresponds to large-scale drift in imaginary-time axes
+      of phase-coherent regions.
+    </p>
+    <p>
+      Dark energy becomes unnecessary as a pressure term,
+      naturally avoiding the 120-orders-of-magnitude vacuum-energy discrepancy.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q11 — “Does the model eliminate dark matter or dark energy?”</h2>
+    <p>
+      Dark energy is eliminated.
+      Dark matter may be explained as large-scale phase curvature
+      in the imaginary-time manifold.
+    </p>
+  </section>
+
+  <section>
+    <h2>Q12 — “Is the model testable?”</h2>
+    <p><strong>Yes.</strong></p>
+    <ul>
+      <li>Phase-curvature lensing effects</li>
+      <li>Frequency-domain shifts in atomic clocks</li>
+      <li>Predicted coherence limits defining <em>c</em></li>
+      <li>Alternative interpretations of cosmological redshift</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Q13 — “Is this just reinterpretation?”</h2>
+    <p><strong>No.</strong></p>
+    <p>The i(time) model:</p>
+    <ul>
+      <li>Removes the need for dark energy</li>
+      <li>Explains the origin of <em>c</em></li>
+      <li>Unifies space and time</li>
+      <li>Reframes particles as temporal processes</li>
+      <li>Explains quantum/classical behavior as coherence regimes</li>
+      <li>Avoids vacuum-energy catastrophes</li>
+      <li>Accounts for cosmic structure as phase-coherent patterning</li>
+    </ul>
+    <p>
+      This is not reinterpretation — it is <strong>structural consolidation</strong>.
+    </p>
+  </section>
+
+</article></p><button class="back">Back to Home</button></section>
+
+
+
+
+  <section id="p7" class="page"><h1>Images</h1><p>Images here</p><button class="back">Back to Home</button></section>
+
+
+
+
+ 
+
+
+<section id="p8" class="page">
+  <h1>Recommended Internet Texts</h1>
+
+  <div class="text-group">
+    <ul>
+      <li>
+        <a href="https://studybuddhism.com/en/glossary/chittamatra?synonym_for=Mind-only+School"
+           target="_blank" rel="noopener">
+          Chittamātra (Mind-Only School) — Glossary Entry
+        </a>
+      </li>
+
+      <li>
+        <a href="https://studybuddhism.com/en/advanced-studies/abhidharma-tenet-systems/the-indian-tenet-systems/no-external-phenomena-gelug-chittamatra"
+           target="_blank" rel="noopener">
+          No External Phenomena — Gelug Chittamātra
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <div class="text-group">
+    <ul>
+      <li>
+        <a href="https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics"
+           target="_blank" rel="noopener">
+          Introduction to Quantum Mechanics — Wikipedia
+        </a>
+      </li>
+
+      <li>
+        <a href="https://physicsforidiots.com/physics/quantum-mechanics/"
+           target="_blank" rel="noopener">
+          Quantum Mechanics Explained — Physics for Idiots
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <button class="back">Back to Home</button>
+</section>
+
+
+
+  <section id="p9" class="page">
+  <h1>Interesting Videos</h1>
+
+  <div class="video-group">
+    <ul>
+      <li>
+        <a href="https://youtu.be/ecTutLU2n48?si=f_PWU8SbqGGO8B2l" target="_blank" rel="noopener">
+          https://youtu.be/ecTutLU2n48
+        </a>
+      </li>
+      <li>
+        <a href="https://youtu.be/GerzZ6GDe-0?si=n11lzErVW7T7m2-J" target="_blank" rel="noopener">
+          https://youtu.be/GerzZ6GDe-0
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <div class="video-group">
+    <ul>
+      <li>
+        <a href="https://youtu.be/vBGSjcEvxUg?si=Cv8SwNqerMq8yICL" target="_blank" rel="noopener">
+          https://youtu.be/vBGSjcEvxUg
+        </a>
+      </li>
+      <li>
+        <a href="https://youtu.be/T3D_uajKw2o?si=iHCDOd93fKbZd07c" target="_blank" rel="noopener">
+          https://youtu.be/T3D_uajKw2o
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <div class="video-group">
+    <ul>
+      <li>
+        <a href="https://youtu.be/ZEvlYornA_Y?si=GZVFvaH6h_DzrflA" target="_blank" rel="noopener">
+          https://youtu.be/ZEvlYornA_Y
+        </a>
+      </li>
+      <li>
+        <a href="https://youtu.be/bRVz4HVoNMA?si=2qsCaZljoFH-HSYx" target="_blank" rel="noopener">
+          https://youtu.be/bRVz4HVoNMA
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <button class="back">Back to Home</button>
+</section>
+
+
+
+
+  <section id="p10" class="page"><h1>Comments</h1><p>There's no contact form yet. Just send an email for now to:samten_zangpo@yahoo.com</p><button class="back">Back to Home</button></section>
+
+
+
+
+  <section id="p11" class="page"><h1>About</h1><p>An interesting new theory to explain some things</p><button class="back">Back to Home</button></section>
+
+
+
+
+  <section id="p12" class="page"><h1>Contact</h1><p>email:samten_zangpo@yahoo.com</p><button class="back">Back to Home</button></section>
+
+
+
+
+  <script>
+    // OPTIONAL easy-change config (edit these two lines later if you want)
+    const HOME_MESSAGE = "THERE'S NO NEED TO BELIEVE ANYTHING— JUST LOOK AND THINK!";
+    const HOME_BACKGROUND = "background.jpg";
+
+    // Apply config
+    document.getElementById("homeTitle").textContent = HOME_MESSAGE;
+    document.documentElement.style.setProperty("--home-bg", `url("${HOME_BACKGROUND}")`);
+
+    const home = document.getElementById("home");
+    const pages = document.querySelectorAll(".page");
+    const buttons = document.querySelectorAll(".nav-btn");
+
+    function showHome() {
+      pages.forEach(p => p.classList.remove("active"));
+      home.style.display = "grid";
+      window.scrollTo(0, 0);
+    }
+
+    function showPage(id) {
+      pages.forEach(p => p.classList.toggle("active", p.id === id));
+      window.scrollTo(0, 0);
+    }
+
+    function runWipeFromButton(btn, onDone) {
+      const r = btn.getBoundingClientRect();
+
+      const wipe = document.createElement("div");
+      wipe.className = "wipe";
+      wipe.style.left = r.left + "px";
+      wipe.style.top = r.top + "px";
+      wipe.style.width = r.width + "px";
+      wipe.style.height = r.height + "px";
+
+      document.body.appendChild(wipe);
+
+      const scaleX = window.innerWidth / r.width;
+      const scaleY = window.innerHeight / r.height;
+
+      requestAnimationFrame(() => {
+        wipe.style.transform = `scale(${scaleX}, ${scaleY})`;
+      });
+
+      wipe.addEventListener("transitionend", () => {
+        onDone();
+        wipe.remove();
+      }, { once: true });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.page;
+
+        runWipeFromButton(btn, () => {
+          home.style.display = "none";
+          showPage(target);
+        });
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("back")) showHome();
+    });
+  </script>
+</body>
+</html>
